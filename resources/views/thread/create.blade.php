@@ -6,8 +6,7 @@
 @include('layouts.partials.error')
 
 @include('layouts.partials.success')
-    <div >
-
+    <div>
             <form class="form-vertical" action="{{route('thread.store')}}" method="post" role="form" id="create-thread-form">
                 @csrf
                 <div class="jumbotron">

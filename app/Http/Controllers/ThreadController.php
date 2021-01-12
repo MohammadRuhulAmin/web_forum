@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class ThreadController extends Controller
 {
+    public function __construct()
+    {
+        return $this->middleware('auth')->except('index');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -41,7 +46,9 @@ class ThreadController extends Controller
             'type'=>'required',
             'thread'=>'required|min:20'
         ]);
-        Thread::create($request->all());
+
+        auth()->user()->threads()->create($request->all());
+//        Thread::create($request->all());
         return back()->withMessage('Thread Created!');
 
     }
