@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ThreadController;
+use App\Models\Thread;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,7 +15,8 @@ use App\Http\Controllers\ThreadController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $threads = Thread::paginate(15);
+    return view('welcome',compact('threads'));
 });
 
 Auth::routes();

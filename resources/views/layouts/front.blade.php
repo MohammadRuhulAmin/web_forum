@@ -10,26 +10,64 @@
     <link rel = "stylesheet" href = "https://stackpath.bootstrapcdn.com/bootswatch/4.5.0/cerulean/bootstrap.min.css">
 
     <link rel = "stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.js">
+    <link rel="stylesheet" href="{{asset('css/main.css')}}">
+
 </head>
 <body>
 
-<div class="navbar navbar-inverse">
-    <a class="navbar-brand" href="#">Web Forum</a>
-        <ul class="nav navbar-nav">
-            <li class="active">
-                <a href="#">Home</a>
-            </li>
-            <li >
-                <a href="#">link</a>
-            </li>
-        </ul>
-</div>
-
-
-
+@include('layouts.partials.navbar')
+@yield('banner')
 <div class="container">
-    @yield('content')
+    <div class="row">
+
+        <div class="row content-heading">
+{{--            <div class="col-md-3"><h4>Category</h4></div>--}}
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-md-4"><h4 class="main-content-heading"></h4>
+
+                           <a href="{{route('thread.create')}}" class="btn btn-primary">Create Thread</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+
+        <div class="col-md-3">
+            <ul class="list-group">
+                <a href="{{route('thread.index')}}" class="list-group-item">
+                    <span class="badge">14</span>
+                    All Thread
+
+                </a>
+                <a href="#" class="list-group-item">
+                    <span class="badge">23</span>
+                    PHP
+
+                </a>
+                <a href="#" class="list-group-item">
+                    <span class="badge">23</span>
+                    Python
+                </a>
+            </ul>
+        </div>
+        <div class="col-md-9">
+            <div class="content-wrap well">
+                @yield('content')
+            </div>
+
+        </div>
+
+
+    </div>
+
 </div>
+
+
 
 
 

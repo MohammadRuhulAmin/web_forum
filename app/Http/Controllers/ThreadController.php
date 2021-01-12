@@ -25,7 +25,7 @@ class ThreadController extends Controller
      */
     public function create()
     {
-        //
+        return view('thread.create');
     }
 
     /**
@@ -36,7 +36,14 @@ class ThreadController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'subject'=>'required|min:10',
+            'type'=>'required',
+            'thread'=>'required|min:20'
+        ]);
+        Thread::create($request->all());
+        return back()->withMessage('Thread Created!');
+
     }
 
     /**
