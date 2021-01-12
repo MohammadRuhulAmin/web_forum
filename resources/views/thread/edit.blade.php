@@ -23,7 +23,7 @@
             </div>
             <div class="jumbotron">
                 <label for="thread">Thread</label>
-                <textarea class="form-control" name="thread">
+                <textarea class="form-control" id="editor" name="thread">
                     {{$thread->thread}}
                 </textarea>
 
@@ -33,5 +33,13 @@
 
         </form>
     </div>
-
+    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+    <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+    <script>
+        window.onload = function(){
+            CKEDITOR.replace('editor',{
+                filebrowserBrowserUrl:filemanager.ckBrowseUrl
+            })
+        }
+    </script>
 @endsection

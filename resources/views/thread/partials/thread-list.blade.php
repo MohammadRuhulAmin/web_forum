@@ -2,7 +2,7 @@
     @forelse($threads as $thread)
         <a href="{{route('thread.show',$thread->id)}}" class="list-group-item">
             <h4 class="list-group-item-heading">{{$thread->subject}}</h4>
-            <p class="list-group-item-text">{{$thread->thread}}</p>
+            <p class="list-group-item-text"><?php echo $thread->subject?></p>
 
 
         </a>

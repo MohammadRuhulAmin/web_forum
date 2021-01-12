@@ -5,7 +5,8 @@
     <h4>{{$thread->subject}}</h4>
     <br>
     <div class="thread-details">
-        {{$thread->thread}}
+        <?php echo $thread->thread ?>
+
     </div>
     <br><br>
     @if(auth()->user()->id == $thread->user_id)

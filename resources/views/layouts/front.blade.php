@@ -12,6 +12,7 @@
     <link rel = "stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.js">
     <link rel="stylesheet" href="{{asset('css/main.css')}}">
 
+    @FilemanagerScript
 </head>
 <body>
 
