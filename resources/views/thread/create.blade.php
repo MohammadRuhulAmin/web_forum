@@ -20,11 +20,12 @@
                     <label for="type">Type</label>
                     <input type="text" class="form-control" name="type" id="" placeholder="Input..." value="{{old('type')}}">
                 </div>
+                <hr>
                 <div class="jumbotron">
                     <label for="thread">Thread</label>
                     <textarea class="form-control" name="thread"></textarea>
-
                 </div>
+                <hr>
 
                 <button type="submit" class="btn btn-primary">Submit</button>
 

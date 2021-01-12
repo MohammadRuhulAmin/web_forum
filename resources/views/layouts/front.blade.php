@@ -26,7 +26,7 @@
                 <div class="row">
                     <div class="col-md-4"><h4 class="main-content-heading"></h4>
 
-                           <a href="{{route('thread.create')}}" class="btn btn-primary">Create Thread</a>
+
 
                     </div>
                 </div>
@@ -36,26 +36,13 @@
 
 
     <div class="row">
+    @section('category')
+            @include('layouts.partials.categories')
+        @show
 
-        <div class="col-md-3">
-            <ul class="list-group">
-                <a href="{{route('thread.index')}}" class="list-group-item">
-                    <span class="badge">14</span>
-                    All Thread
 
-                </a>
-                <a href="#" class="list-group-item">
-                    <span class="badge">23</span>
-                    PHP
-
-                </a>
-                <a href="#" class="list-group-item">
-                    <span class="badge">23</span>
-                    Python
-                </a>
-            </ul>
-        </div>
         <div class="col-md-9">
+            <div class="row content-heading">@yield('heading')</div>
             <div class="content-wrap well">
                 @yield('content')
             </div>
