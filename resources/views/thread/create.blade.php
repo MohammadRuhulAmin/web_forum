@@ -3,18 +3,9 @@
 @section("heading","Create Thread")
 
 @section('content')
-    @if(count($errors)>0)
-        <div class="alert alert-danger">
-            <ul>
-                @foreach($errors->all() as $error)
-                    <li>{{$error}}</li>
-                @endforeach
-            </ul>
+@include('layouts.partials.error')
 
-        </div>
-    @endif
-
-
+@include('layouts.partials.success')
     <div >
 
             <form class="form-vertical" action="{{route('thread.store')}}" method="post" role="form" id="create-thread-form">
