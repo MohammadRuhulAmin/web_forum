@@ -10,8 +10,11 @@
         <br>
         <div class="thread-details">
             <?php echo $thread->thread ?>
-
         </div>
+        <br>
+        <p>By</p> <lead>Someone</lead>
+        <br>
+        <lead>{{$thread->created_at}}</lead>
     </div>
 
     <br><br>
@@ -37,11 +40,13 @@
             <div class="jumbotron comment-list well well-lg" >
                 <h4><?php echo $comment->body; ?></h4>
 
-                <lead><?php echo $comment->user->name; ?></lead>
+                <lead>By : <?php echo $comment->user->name; ?></lead>
                 <br><br>
+                <lead>Commented at :  {{$comment->created_at}}</lead>
             </div>
         <hr>
         <br>
+        @if(auth()->user()->id == $comment->user_id)
 {{--            Comment Editing Modal--}}
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                 Edit
@@ -86,14 +91,19 @@
                 <input type = "submit" class="btn btn-xs btn-danger" value="Delete">
             </form>
             <br><br>
-
+        @endif
             {{--Reply To Comment --}}
 
             @foreach($comment->comments as $reply)
                 <div class="small well text-info reply-list" style="margin-left:50px">
                     <p>{{$reply->body}}</p>
                     <lead>by {{$reply->user->name}}</lead>
-                    <br><br>
+                    <br>
+                    <div class="alert-danger">
+                        <lead > Replied At: {{$reply->created_at}}</lead>
+                    </div>
+
+                    <br>
                 </div>
                 <hr>
                 <br><br>
