@@ -11,7 +11,6 @@
             </p>
         </div>
 
-    </div>
 @endsection
 
 @section('heading',"Threads")
