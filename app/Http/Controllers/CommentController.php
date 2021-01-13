@@ -81,7 +81,11 @@ class CommentController extends Controller
      */
     public function update(Request $request, Comment $comment)
     {
-        //
+        $this->validate($request,[
+            'body'=>'required'
+        ]);
+        $comment->update($request->all());
+        return back()->withMessage("Comment is Updated!");
     }
 
     /**

@@ -32,14 +32,57 @@
                 <lead><?php echo $comment->user->name; ?></lead>
                 <br><br>
             </div>
+{{--            Comment Editing Modal--}}
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                Edit
+            </button>
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Edit Comment</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="comment-form">
+                                <form action="{{route('comment.update',$comment->id)}}" method="post" role="form">
+                                    @csrf
+                                    {{method_field('put')}}
+                                    <legend>Edit Comment</legend>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="body" placeholder="input.." value="{{strip_tags($comment->body)}}">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary" >Save changes</button>
+
+
+                                </form>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Modal -->
 
 
 
+
+
+{{--End comment editig modal--}}
             <form action = "{{route('comment.destroy',$comment->id)}}" method = "post" class="inline-it">
                 @csrf
                 {{method_field('DELETE')}}
                 <input type = "submit" class="btn btn-xs btn-danger" value="Delete">
             </form>
+
             <br><br>
         @endforeach
     </div>
@@ -70,3 +113,4 @@
         }
     </script>
 @endsection
+
