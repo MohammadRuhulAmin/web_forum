@@ -2,12 +2,18 @@
 
 
 @section('content')
-    <h4>{{$thread->subject}}</h4>
-    <br>
-    <div class="thread-details">
-        <?php echo $thread->thread ?>
+    <div class="content-wrap well">
 
+    <div class="jumbotron">
+
+        <h4>{{$thread->subject}}</h4>
+        <br>
+        <div class="thread-details">
+            <?php echo $thread->thread ?>
+
+        </div>
     </div>
+
     <br><br>
     @if(auth()->user()->id == $thread->user_id)
         <div class="actions" >
@@ -20,18 +26,22 @@
             </form>
         </div>
     @endif
+    </div>
 
 {{--    Comments--}}
     <br><br>
     <div class="comment">
         <label>Comments</label>
         @foreach($thread->comments as $comment)
-            <div class="jumbotron">
+
+            <div class="jumbotron comment-list well well-lg" >
                 <h4><?php echo $comment->body; ?></h4>
 
                 <lead><?php echo $comment->user->name; ?></lead>
                 <br><br>
             </div>
+        <hr>
+        <br>
 {{--            Comment Editing Modal--}}
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                 Edit
@@ -68,22 +78,39 @@
                     </div>
                 </div>
             </div>
-
-
             <!-- Modal -->
-
-
-
-
-
 {{--End comment editig modal--}}
             <form action = "{{route('comment.destroy',$comment->id)}}" method = "post" class="inline-it">
                 @csrf
                 {{method_field('DELETE')}}
                 <input type = "submit" class="btn btn-xs btn-danger" value="Delete">
             </form>
-
             <br><br>
+
+            {{--Reply To Comment --}}
+
+            @foreach($comment->comments as $reply)
+                <div class="small well text-info reply-list" style="margin-left:50px">
+                    <p>{{$reply->body}}</p>
+                    <lead>by {{$reply->user->name}}</lead>
+                    <br><br>
+                </div>
+                <hr>
+                <br><br>
+            @endforeach
+            {{--                reply form--}}
+            <div class="reply-form">
+                <form action="{{route('replycomment.store',$comment->id)}}" method="post" role="form">
+                    @csrf
+                    <legend>Reply</legend>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="body" placeholder="input">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Reply</button>
+
+                </form>
+
+            </div>
         @endforeach
     </div>
 

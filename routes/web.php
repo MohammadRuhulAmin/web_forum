@@ -30,3 +30,6 @@ Route::resource('comment',CommentController::class);
 
 Route::post('comment/create/{thread}',[App\Http\Controllers\CommentController::class,'addThreadComment'])
     ->name('threadcomment.store');
+
+Route::post('reply/create/{comment}',[App\Http\Controllers\CommentController::class,'addReplyComment'])
+    ->name('replycomment.store');

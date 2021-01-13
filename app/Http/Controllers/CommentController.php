@@ -16,8 +16,22 @@ class CommentController extends Controller
         $comment->body = $request->body;
         $comment->user_id = auth()->user()->id;
         $thread->comments()->save($comment);
-        return back()->withMessage('Comment Created');
+        return back()->withMessage('Comment Created Successfully');
     }
+
+    public function addReplyComment(Request $request,Comment $comment){
+
+        $this->validate($request,[
+            'body'=>'required'
+        ]);
+        $reply = new Comment();
+        $reply->body = $request->body;
+        $reply->user_id = auth()->user()->id;
+        $comment->comments()->save($reply);
+        return back()->withMessage('Relay Created Successfully');
+    }
+
+
 
     /**
      * Display a listing of the resource.
