@@ -26,13 +26,26 @@
     <div class="comment">
         <label>Comments</label>
         @foreach($thread->comments as $comment)
-{{--            <h4>{{$comment->body}}</h4>--}}
-        <h4><?php echo $comment->body; ?></h4>
-{{--            <lead>{{$comment->user->name}}</lead>--}}
-            <lead><?php echo $comment->user->name; ?></lead>
+            <div class="jumbotron">
+                <h4><?php echo $comment->body; ?></h4>
+
+                <lead><?php echo $comment->user->name; ?></lead>
+                <br><br>
+            </div>
+
+
+
+            <form action = "{{route('comment.destroy',$comment->id)}}" method = "post" class="inline-it">
+                @csrf
+                {{method_field('DELETE')}}
+                <input type = "submit" class="btn btn-xs btn-danger" value="Delete">
+            </form>
+            <br><br>
         @endforeach
     </div>
+
     <br><br>
+{{--    comment form--}}
     <div class="comment-form">
         <form action="{{route('threadcomment.store',$thread->id)}}" method="post" role="form">
             @csrf

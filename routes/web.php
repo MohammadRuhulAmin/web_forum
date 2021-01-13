@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ThreadController;
+use App\Http\Controllers\CommentController;
 use App\Models\Thread;
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +26,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::resource('thread',ThreadController::class);
 
-Route::resource('comment','CommentController');
+Route::resource('comment',CommentController::class);
 
 Route::post('comment/create/{thread}',[App\Http\Controllers\CommentController::class,'addThreadComment'])
     ->name('threadcomment.store');

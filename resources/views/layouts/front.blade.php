@@ -19,6 +19,9 @@
 @include('layouts.partials.navbar')
 @yield('banner')
 <div class="container">
+    @include('layouts.partials.error')
+    @include('layouts.partials.success')
+
     <div class="row">
 
         <div class="row content-heading">
